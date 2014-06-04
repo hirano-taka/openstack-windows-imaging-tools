@@ -3,7 +3,8 @@ $ErrorActionPreference = "Stop"
 try
 {
     $temp = "$ENV:SystemRoot\Temp"
-    $baseUrl = "https://raw.github.com/cloudbase/windows-openstack-imaging-tools/master"
+    # $baseUrl = "https://raw.github.com/cloudbase/windows-openstack-imaging-tools/master"
+    $baseUrl = "https://gitlab.osuyu.com/root/openstack-windows-imaging-tools-customized/raw/master"
 
     # Put the wallpaper in place
     $wallpaper_dir = "$ENV:SystemRoot\web\Wallpaper\Cloudbase"
@@ -13,21 +14,22 @@ try
     }
 
     $Host.UI.RawUI.WindowTitle = "Downloading wallpaper..."
-    $wallpaper = "Wallpaper-Cloudbase-2013.png"
+    $wallpaper = "wallpaper.jpg"
     (new-object System.Net.WebClient).DownloadFile("$baseUrl/$wallpaper", "$wallpaper_dir\$wallpaper")
 
-    $Host.UI.RawUI.WindowTitle = "Configuring GPOs..."
+    ##### DISABLED GPO UPDATE
+    # $Host.UI.RawUI.WindowTitle = "Configuring GPOs..."
 
-    $gpoZipFile = "GPO.zip"
-    $gpoZipPath = "$temp\$gpoZipFile"
-    (new-object System.Net.WebClient).DownloadFile("$baseUrl/$gpoZipFile", $gpoZipPath)
+    # $gpoZipFile = "GPO.zip"
+    # $gpoZipPath = "$temp\$gpoZipFile"
+    # (new-object System.Net.WebClient).DownloadFile("$baseUrl/$gpoZipFile", $gpoZipPath)
 
-    foreach($item in (New-Object -com shell.application).NameSpace($gpoZipPath).Items())
-    {
-        $yesToAll = 16
-        (New-Object -com shell.application).NameSpace("$ENV:SystemRoot\System32\GroupPolicy").copyhere($item, $yesToAll)
-    }
-    del $gpoZipPath
+    # foreach($item in (New-Object -com shell.application).NameSpace($gpoZipPath).Items())
+    # {
+    #     $yesToAll = 16
+    #     (New-Object -com shell.application).NameSpace("$ENV:SystemRoot\System32\GroupPolicy").copyhere($item, $yesToAll)
+    # }
+    # del $gpoZipPath
 
     # Enable ping (ICMP Echo Request on IPv4 and IPv6)
     # TODO: replace with with a netsh advfirewall command
