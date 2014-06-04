@@ -4,7 +4,8 @@ try
 {
     $temp = "$ENV:SystemRoot\Temp"
     # $baseUrl = "https://raw.github.com/cloudbase/windows-openstack-imaging-tools/master"
-    $baseUrl = "https://gitlab.osuyu.com/root/openstack-windows-imaging-tools-customized/raw/master"
+    # $baseUrl = "https://gitlab.osuyu.com/root/openstack-windows-imaging-tools-customized/raw/master"
+    $baseUrl = "https://raw.github.com/hirano-taka/openstack-windows-imaging-tools/master
 
     # Put the wallpaper in place
     $wallpaper_dir = "$ENV:SystemRoot\web\Wallpaper\Cloudbase"
